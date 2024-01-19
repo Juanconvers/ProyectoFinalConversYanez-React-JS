@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react'
-
 import RouterPrincipal from './router/RouterPrincipal';
-
 import "bootstrap/dist/css/bootstrap.min.css";
+import { CartProvider } from './context/CartContext';
 
 
-import { getProducts } from "./services";
 
 const App = () => {
 
   return (
       <div style={{width: "100vw", height: "100vh"}}>
-        <RouterPrincipal/>
+        <CartProvider>
+          <RouterPrincipal/>
+        </CartProvider>
                 
       </div> 
   );

@@ -12,6 +12,8 @@ const NavBarComponent = () => {
 
 const {category} = useCategory();
 
+
+
   return (
     <Navbar expand="lg" bg="primary" data-bs-theme="dark" className="bg-body-tertiary" style={{background: "#f4a460", padding: "10", fontWeight: "700"}}>
       <Container fluid>
