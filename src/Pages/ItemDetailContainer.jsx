@@ -4,15 +4,11 @@ import { useGetProductsById } from "../hooks/useProducts";
 import { useParams } from "react-router-dom";
 import ItemCount from "../components/ItemCount";
 
-ItemCount
-
-useGetProductsById
-
-const ItemDetailContainer = () => {
+export const ItemDetailContainer = () => {
 
   const {id} = useParams() 
   
-  const {datoProducto} = useGetProductsById(id)
+  const {datoProducto} = useGetProductsById("products", id)
 
   return (
     <Card key={datoProducto.id} style={{ width: '18rem' }}>

@@ -1,35 +1,44 @@
 import { useState, useEffect } from "react";
-import {getProducts, getProductsById, getProductsByCategory} from "../services"
+import {getProductsByCategory} from "../services"
+import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
 
-export const useGetProducts = (limit) => {
-    const [datosProducto, setdatosProducto] = useState([]);
-      useEffect(() => {
-      getProducts(limit)
-        .then((response) => {
-          setdatosProducto(response.data.products)
-        })
-        .catch((error) => {
-          console.log(error);
+/**
+ * @description Custom Hook for get products
+ * @returns {Array}
+ */
+
+export const useGetProducts = (collectionName = "products") => {
+    const [datosProducto, setDatosProducto] = useState([]);
+      
+    useEffect(() => {
+      const db = getFirestore();
+
+      const productsCollection = collection(db, collectionName);
+      
+      getDocs(productsCollection).then((snapshot) => {
+        setDatosProducto(
+          snapshot.docs.map((doc) => ({ id: doc, ...doc.data() }))
+        );
         });
     }, []);
-
+    
   return {datosProducto}
 }
 
-export const useGetProductsById = (id) => {
+export const useGetProductsById = (collectionName = "products", id) => {
   const [datoProducto, setdatoProducto] = useState([]);
   useEffect(() => {
-    getProductsById(id)
-      .then((response) => {
-        setdatoProducto(response.data)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    const db = getFirestore();
 
-return {datoProducto}
-}
+    const docRef = doc(db, collectionName, id)
+
+    getDoc(docRef).then((doc) => {
+      setdatoProducto({ id: doc.id, ...doc.data() })
+    })
+  }, [id]);
+
+return {datoProducto};
+};
 
 export const useGetProductsByCategory = (category) => {
   const [datosProducto, setdatosProducto] = useState([]);

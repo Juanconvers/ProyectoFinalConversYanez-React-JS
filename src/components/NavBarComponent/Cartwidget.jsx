@@ -14,9 +14,9 @@ const Cartwidget = () => {
                 <div href="#">
                     <img src={Cart} alt="Cart" style={{width: 70, padding:15}}/>
                 </div>
-               
+{/*                
                 <span style={{color: "black", fontSize: "1.3rem", fontWeight: "bold"}}>{count}</span> 
-                
+                 */}
             </Card.Body>
         </Card>
     )
