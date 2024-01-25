@@ -54,3 +54,20 @@ export const useGetProductsByCategory = (category) => {
 
 return {datosProducto}
 }
+
+export const useGetCategories = (collectionName = 'categories') => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const db = getFirestore();
+    const productsCollection = collection(db, collectionName);
+
+    getDocs(productsCollection).then((snapshot) => {
+      const categories = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      setCategories(
+        categories[0].categories
+      );
+    });
+  }, []);
+  return { categories };
+};

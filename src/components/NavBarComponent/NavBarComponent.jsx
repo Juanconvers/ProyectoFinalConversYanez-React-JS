@@ -5,12 +5,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Cartwidget from './Cartwidget';
 import Logo from "../../assets/img/LogoFrankyCharly.png"
-import { useCategory } from '../../hooks/useCategory';
-
+import { useGetCategories } from '../../hooks/useProducts';
 
 const NavBarComponent = () => {
 
-const {category} = useCategory();
+const {categories} = useGetCategories();
 
 
 
@@ -26,11 +25,10 @@ const {category} = useCategory();
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px' }}
             navbarScroll>
-            <Nav.Link href="#action1">Accesorios</Nav.Link>
             <Nav.Link href="#action2">Políticas</Nav.Link>
             <NavDropdown title="Categorías" id="basic-nav-dropdown">
               
-                {category.map((item, index) => {
+                {categories.map((item, index) => {
                   return (
                     <NavDropdown.Item key={index}>
                       <Link to={`/category/${item}`}>{item}</Link>
@@ -41,6 +39,9 @@ const {category} = useCategory();
               </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+
+        <Link to="/create-product">Crear Producto Nuevo</Link>
+
         <Cartwidget/>
       </Container>
     </Navbar>
