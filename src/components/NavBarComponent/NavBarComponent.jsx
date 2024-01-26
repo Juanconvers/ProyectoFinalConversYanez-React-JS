@@ -14,8 +14,8 @@ const {categories} = useGetCategories();
 
 
   return (
-    <Navbar expand="lg" bg="primary" data-bs-theme="dark" className="bg-body-tertiary" style={{background: "#f4a460", padding: "10", fontWeight: "700"}}>
-      <Container fluid>
+    <Navbar expand="lg" bg="warning"  className="bg-body-tertiary" style={{background: "#f4a460", padding: "10", fontWeight: "700"}}>
+      <Container fluid style={{background: "#d8daf0"}}>
         <Link to="/">
             <img src={Logo} alt="LogoHome" style={{width: 120, padding:15}}/>
         </Link>
@@ -26,17 +26,17 @@ const {categories} = useGetCategories();
             style={{ maxHeight: '100px' }}
             navbarScroll>
             <Nav.Link href="#action2">Políticas</Nav.Link>
+            
             <NavDropdown title="Categorías" id="basic-nav-dropdown">
-              
-                {categories.map((item, index) => {
+              {categories.map((category, index) => {
                   return (
                     <NavDropdown.Item key={index}>
-                      <Link to={`/category/${item}`}>{item}</Link>
+                      <Link key={index} to={`/category/${category}`}>{category}</Link>
                     </NavDropdown.Item>
                   );
                 })}
-
               </NavDropdown>
+          
           </Nav>
         </Navbar.Collapse>
 

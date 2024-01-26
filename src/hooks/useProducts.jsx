@@ -26,14 +26,14 @@ export const useGetProducts = (collectionName = "products") => {
 }
 
 export const useGetProductsById = (collectionName = "products", id) => {
-  const [datoProducto, setdatoProducto] = useState([]);
+  const [datoProducto, setDatoProducto] = useState([]);
   useEffect(() => {
     const db = getFirestore();
 
     const docRef = doc(db, collectionName, id)
 
     getDoc(docRef).then((doc) => {
-      setdatoProducto({ id: doc.id, ...doc.data() })
+      setDatoProducto({ id: doc.id, ...doc.data() })
     })
   }, [id]);
 
