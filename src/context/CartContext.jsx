@@ -4,21 +4,11 @@ export const CartContext = createContext();
 
 export const CartProvider = ({children}) => {
 
-const [count, setCount] = useState([]); 
+    const [count, setCount] = useState([]); 
 
-    const handleAdd = () => {
-        setCount(count + 1);
+    return(
+        <CartContext.Provider value={{count, setCount}}>
+            {children}
+        </CartContext.Provider>
+        )
     }
-
-    const handleRemove = () => {
-        setCount(count - 1);
-    }
-console.log(count)
-return(
-    <CartContext.Provider value={{count, setCount, handleAdd, handleRemove}}>
-        {children}
-    </CartContext.Provider>
-
-)
-
-}

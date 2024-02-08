@@ -15,7 +15,7 @@ const ItemListContainer = ({datosProducto}) => {
                 {products.description}
                 </Card.Text>
                 <div>{products.price}</div>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">Ver detalle del producto</Button>
               </Card.Body>
             </Card>
           );
