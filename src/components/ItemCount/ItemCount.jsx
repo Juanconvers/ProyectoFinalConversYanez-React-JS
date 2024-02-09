@@ -30,11 +30,13 @@ const ItemCount = ({productId}) => {
   return (
     <div>
         <div style = {{width: '50%', display: 'flex', align: 'center', justifyContent: 'space-between', margin: 'auto'   }}>
-          <Button onClick={handleRemove} >-</Button>
+          <Button variant="secondary" onClick={handleRemove} >-</Button>
           <span>{countItem}</span>
-          <Button onClick={handleAdd} >+</Button>
+          <Button variant="secondary" onClick={handleAdd} >+</Button>
       </div>
-      <Button onClick = {handleAddProductToCart}>Agregar al Carrito</Button>
+        <div style = {{width: '80%', display: 'flex', align: 'center', justifyContent: 'center', margin: 15   }}>
+          <Button variant="warning" onClick = {handleAddProductToCart}>Agregar al Carrito</Button>
+        </div>
     </div>
   )
 }

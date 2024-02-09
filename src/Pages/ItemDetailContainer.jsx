@@ -9,7 +9,8 @@ export const ItemDetailContainer = () => {
   const { id } = useParams()
 
   const {datoProducto} = useGetProductsById("products", id)
-  
+  console.log(datoProducto)
+  console.log(id)
   return (
     <Card key={datoProducto.id} style={{ width: "18rem" }}>
       <Card.Img variant="top" src={datoProducto.thumbnail} />

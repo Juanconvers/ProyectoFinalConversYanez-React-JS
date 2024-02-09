@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+
 import Card from "react-bootstrap/Card";
 
 const ItemListContainer = ({datosProducto}) => {
@@ -15,7 +15,6 @@ const ItemListContainer = ({datosProducto}) => {
                 {products.description}
                 </Card.Text>
                 <div>{products.price}</div>
-                <Button variant="primary">Ver detalle del producto</Button>
               </Card.Body>
             </Card>
           );

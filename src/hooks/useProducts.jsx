@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import {getProductsByCategory} from "../services"
-import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
+// import {getProductsByCategory} from "../services"
+import { collection, getDocs, doc, getDoc, query, where, getFirestore } from "firebase/firestore";
 
 /**
  * @description Custom Hook for get products
@@ -25,18 +25,18 @@ export const useGetProducts = (collectionName = "products") => {
   return {datosProducto}
 }
 
-export const useGetProductsById = (collectionName = "products", id) => {
+export const useGetProductsById = (id) => {
   const [datoProducto, setDatoProducto] = useState([]);
   useEffect(() => {
     const db = getFirestore();
 
-    const docRef = doc(db, collectionName, id)
+    const docRef = doc(db, "products", id)
 
     getDoc(docRef).then((doc) => {
       setDatoProducto({ id: doc.id, ...doc.data() })
     })
   }, [id]);
-
+  
 return {datoProducto};
 };
 
@@ -71,3 +71,4 @@ export const useGetCategories = (collectionName = 'categories') => {
   }, []);
   return { categories };
 };
+

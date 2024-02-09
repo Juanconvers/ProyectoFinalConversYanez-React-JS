@@ -18,7 +18,7 @@ const Cartwidget = () => {
                     <img src={Cart} alt="Cart" style={{width: 40, padding:1}}/>
                 </div>
                
-                <span style={{color: "black", fontSize: "1.3rem", fontWeight: "bold"}}>{totalQuantity}</span> 
+                <span style={{height: 30, width: 30, display: 'flex', align: 'center', justifyContent: 'center',  backgroundColor: 'white', color: "black", fontSize: "1.3rem", fontWeight: "bold", borderRadius: 4, margin: 4 }}>{totalQuantity}</span> 
                 
             </Card.Body>
         </Card>
