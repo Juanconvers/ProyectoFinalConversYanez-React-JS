@@ -33,8 +33,8 @@ const ItemCount = ({productTitle}) => {
           <Button variant="secondary" onClick={handleRemove} >-</Button>
           <span>{countItem}</span>
           <Button variant="secondary" onClick={handleAdd} >+</Button>
-      </div>
-        <div style = {{width: '80%', display: 'flex', align: 'center', justifyContent: 'center', margin: 15   }}>
+      </div >
+        <div style = {{display: 'flex', align: 'center', justifyContent: 'center', margin: 15 }}>
           <Button variant="warning" onClick = {handleAddProductToCart}>Agregar al Carrito</Button>
         </div>
     </div>

@@ -4,12 +4,12 @@ import Card from "react-bootstrap/Card";
 
 const ItemListContainer = ({datosProducto}) => {
   return (
-      <div style={{width: '100vw', height: '100vh', display: 'flex', flexWrap: 'wrap'}}>
+      <div style={{ width: '100vw', height: '100vh', display: 'flex', flexWrap: 'wrap'}}>
         {datosProducto.map((products) => {
           return (
             <Link to={`/item/${products.id}`} key={products.id}>
               <Card  style={{ width: "18rem" , margin: 15}}>
-                <Card.Img variant="top" src={products.thumbnail} />
+                <Card.Img style={{ width: "auto", height: 300}} variant="top" src={products.thumbnail} />
                 <Card.Body>
                   <Card.Title>{products.title}</Card.Title>
                   <Card.Text>

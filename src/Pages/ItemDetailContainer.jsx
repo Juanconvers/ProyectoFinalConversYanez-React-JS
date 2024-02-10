@@ -11,15 +11,17 @@ export const ItemDetailContainer = () => {
   const {datoProducto} = useGetProductsById(id)
 
   return (
-    <Card key={datoProducto.id} style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={datoProducto.thumbnail} />
-      <Card.Body >
-        <Card.Title>{datoProducto.title}</Card.Title>
-        <Card.Text>{datoProducto.description}</Card.Text>
-        <div>{datoProducto.price}</div>
-        <ItemCount productTitle={datoProducto.title} />
-      </Card.Body>
-    </Card>
+    <div style={{display: "flex", align: "center", justifyContent: "center"}}>
+      <Card key={datoProducto.id} style={{ width: "25rem" }}>
+        <Card.Img variant="top" src={datoProducto.thumbnail} />
+        <Card.Body >
+          <Card.Title>{datoProducto.title}</Card.Title>
+          <Card.Text>{datoProducto.description}</Card.Text>
+          <div>{datoProducto.price}</div>
+          <ItemCount productTitle={datoProducto.title} />
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 

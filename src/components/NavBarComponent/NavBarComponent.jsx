@@ -36,14 +36,10 @@ const {categories} = useGetCategories();
                     </NavDropdown.Item>
                   );
                 })}
-              </NavDropdown>
-          
+              </NavDropdown>   
           </Nav>
         </Navbar.Collapse>
-
-        <Link to="/create-product">Crear Producto Nuevo</Link>
-
-        <Cartwidget/>
+       <Cartwidget/>
       </Container>
     </Navbar>
   );
