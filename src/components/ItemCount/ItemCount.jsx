@@ -2,10 +2,10 @@ import { useContext, useState } from "react";
 import { Button } from "react-bootstrap"
 import {CartContext} from "../../context/CartContext";
 
-const ItemCount = ({productId}) => {
+const ItemCount = ({productTitle}) => {
 
     const [countItem, setCountItem] = useState(1);
-    const {count, setCount} = useContext(CartContext);
+    const {cartElements, setCartElements} = useContext(CartContext);
 
     const handleAdd = () => {
       setCountItem(countItem + 1);
@@ -16,13 +16,13 @@ const ItemCount = ({productId}) => {
     };
 
     const handleAddProductToCart = () => {
-      const productExist = count.find((item) => item.id === productId);
+      const productExist = cartElements.find((item) => item.id === productTitle);
 
       if(productExist){
-        setCount(
-          count.map((item) => item.id === productId? {...item, quantity: item.quantity + countItem} : item))
+        setCartElements(
+          cartElements.map((item) => item.id === productTitle? {...item, quantity: item.quantity + countItem} : item))
         }else{
-          setCount([...count, { id: productId, quantity: countItem}])
+          setCartElements([...cartElements, { id: productTitle, quantity: countItem}])
         }
         setCountItem(1);
     }

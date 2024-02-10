@@ -7,22 +7,22 @@ import { collection, getDocs, doc, getDoc, query, where, getFirestore } from "fi
  * @returns {Array}
  */
 
-export const useGetProducts = (collectionName = "products") => {
-    const [datosProducto, setDatosProducto] = useState([]);
-      
-    useEffect(() => {
-      const db = getFirestore();
+export const useGetProducts = (collectionName = 'products') => {
+  const [datosProducto, setDatosProducto] = useState([]);
 
-      const productsCollection = collection(db, collectionName);
-      
-      getDocs(productsCollection).then((snapshot) => {
-        setDatosProducto(
-          snapshot.docs.map((doc) => ({ id: doc, ...doc.data() }))
-        );
-        });
-    }, []);
-    
-  return {datosProducto}
+  useEffect(() => {
+    const db = getFirestore();
+
+    const productsCollection = collection(db, collectionName);
+
+    getDocs(productsCollection).then((snapshot) => {
+      setDatosProducto(
+        snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      );
+    });
+  }, []);
+
+  return { datosProducto }
 }
 
 export const useGetProductsById = (id) => {
@@ -36,23 +36,55 @@ export const useGetProductsById = (id) => {
       setDatoProducto({ id: doc.id, ...doc.data() })
     })
   }, [id]);
-  
-return {datoProducto};
+
+  return { datoProducto };
 };
 
-export const useGetProductsByCategory = (category) => {
+export const useGetProductsByCategory = (nombreCategoria) => {
   const [datosProducto, setdatosProducto] = useState([]);
-    useEffect(() => {
-      getProductsByCategory(category)
-      .then((response) => {
-        setdatosProducto(response.data.products)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [category]);
+  useEffect(() => {
+    const db = getFirestore();
+    const productsCollection = collection(db, 'products');
+    const q = query(productsCollection, where('category', '==', nombreCategoria));
+    getDocs(q).then((snapshot) => {
+      setdatosProducto(
+        snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      );
+    });
+  }, [nombreCategoria]);
 
-return {datosProducto}
+  return { datosProducto }
+}
+
+export const useGetProductsCart = (elementosCarrito) => {
+  const [datosProducto, setDatosProducto] = useState([]);
+  useEffect(() => {
+    if (elementosCarrito.length !== 0) {
+      const elementosId = elementosCarrito.map((item) => item.id);
+      const db = getFirestore();
+      const productsCollection = collection(db, 'products');
+      const q = query(productsCollection, where('title', 'in', elementosId));
+      getDocs(q).then((snapshot) => {
+        if (snapshot.empty) {
+          // console.log("NO ha encontrado resultados");
+          setDatosProducto(['nodata']);
+        } else {
+          // console.log("Si encontro resultados");
+          setDatosProducto(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              quantity: elementosCarrito.find((item) => item.id == doc.data().title).quantity,
+              ...doc.data()
+            })));
+        }
+      });
+    } else {
+      // console.log("elementosCarrito esta vacio");
+      setDatosProducto(['nodata']);
+    }
+  }, [elementosCarrito]);
+
+  return { datosProducto }
 }
 
 export const useGetCategories = (collectionName = 'categories') => {

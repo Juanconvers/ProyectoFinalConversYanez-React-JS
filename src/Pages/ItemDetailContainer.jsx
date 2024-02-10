@@ -8,9 +8,8 @@ export const ItemDetailContainer = () => {
 
   const { id } = useParams()
 
-  const {datoProducto} = useGetProductsById("products", id)
-  console.log(datoProducto)
-  console.log(id)
+  const {datoProducto} = useGetProductsById(id)
+
   return (
     <Card key={datoProducto.id} style={{ width: "18rem" }}>
       <Card.Img variant="top" src={datoProducto.thumbnail} />
@@ -18,7 +17,7 @@ export const ItemDetailContainer = () => {
         <Card.Title>{datoProducto.title}</Card.Title>
         <Card.Text>{datoProducto.description}</Card.Text>
         <div>{datoProducto.price}</div>
-        <ItemCount productId={datoProducto.id} />
+        <ItemCount productTitle={datoProducto.title} />
       </Card.Body>
     </Card>
   );

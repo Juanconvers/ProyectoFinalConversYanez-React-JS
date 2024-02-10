@@ -4,9 +4,9 @@ import ItemListContainer from '../components/ItemListContainer/ItemListContainer
 
 export const Categorias = () => {
 
-    const { id } = useParams();
+    const { nombre } = useParams();
 
-    const {datosProducto} = useGetProductsByCategory(id)
+    const {datosProducto} = useGetProductsByCategory(nombre)
 
     return (
     <ItemListContainer datosProducto={datosProducto}/>

@@ -7,16 +7,18 @@ const ItemListContainer = ({datosProducto}) => {
       <div style={{width: '100vw', height: '100vh', display: 'flex', flexWrap: 'wrap'}}>
         {datosProducto.map((products) => {
           return (
-            <Card key={products.id} style={{ width: "18rem" , margin: 15}}>
-               <Link to={`/item/${products.id}`}><Card.Img variant="top" src={products.thumbnail} /></Link>
-              <Card.Body>
-                <Card.Title>{products.title}</Card.Title>
-                <Card.Text>
-                {products.description}
-                </Card.Text>
-                <div>{products.price}</div>
-              </Card.Body>
-            </Card>
+            <Link to={`/item/${products.id}`} key={products.id}>
+              <Card  style={{ width: "18rem" , margin: 15}}>
+                <Card.Img variant="top" src={products.thumbnail} />
+                <Card.Body>
+                  <Card.Title>{products.title}</Card.Title>
+                  <Card.Text>
+                  {products.description}
+                  </Card.Text>
+                  <div>{products.price}</div>
+                </Card.Body>
+              </Card>
+            </Link>
           );
         })}
       </div>
